@@ -1,21 +1,24 @@
-export default function ProductCard(){
-    return   <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+import { Link } from "react-router-dom"
+
+
+export default function ProductCard({product}){
+    return   <div key={product.id} className="col-sm-12 col-md-6 col-lg-3 my-3">
     <div className="card p-3 rounded">
       <img
         className="card-img-top mx-auto"
-        src="./images/products/1.jpg"
+        src={product.images[0].image}
       />
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">
-          <a href="">OPPO F21s Pro 5G (Dawnlight Gold, 8GB RAM, 128 Storage) with No Cost EMI/Additional Exchange Offers</a>
+        <Link to={"/product/"+product.id}>{product.name}</Link>
         </h5>
         <div className="ratings mt-auto">
           <div className="rating-outer">
-            <div className="rating-inner"></div>
+            <div className="rating-inner" style={{width:`${product.ratings/5 * 100}%`}}></div>
           </div>
         </div>
-        <p className="card-text">$245.67</p>
-        <a href="#" id="view_btn" className="btn btn-block">View Details</a>
+        <p className="card-text">${product.price}</p>
+        <Link to={"/product/"+product.id} id="view_btn" className="btn btn-block">View Details</Link>
       </div>
     </div>
   </div>
